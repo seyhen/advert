@@ -1,0 +1,32 @@
+sb_platform_homepage:
+    path:     /{page}
+    defaults: { _controller: SBPlatformBundle:Advert:index, page: 1 }
+    requirements:
+        page: \d+
+
+sb_platform_view:
+    path:    /advert/{id}
+    defaults: { _controller: SBPlatformBundle:Advert:view }
+    requirements:
+        id: \d+
+
+sb_platform_add:
+    path:    /add
+    defaults: { _controller: SBPlatformBundle:Advert:add }
+
+sb_platform_delete:
+    path:    /delete/{id}
+    defaults: { _controller: SBPlatformBundle:Advert:delete }
+    requirements:
+        id: \d+
+
+sb_platform_edit:
+    path:    /edit/{id}
+    defaults: { _controller: SBPlatformBundle:Advert:edit }
+    requirements :
+        id: \d+
+
+sb_platform_test:
+    path:    /test
+    defaults : { _controller: SBPlatformBundle:Advert:test }
+

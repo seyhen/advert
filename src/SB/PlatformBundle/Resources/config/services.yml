@@ -1,0 +1,10 @@
+services:
+#    sb_platform.example:
+#        class: SB\PlatformBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+     sb_platform.antispam:
+         class: SB\PlatformBundle\Antispam\SBAntispam
+     #sb_platform.datePicker:
+      #   class: SB\PlatformBundle\Form\Type\DatePickerType
+       #  tags:
+        #   - { name: sb_platform.type, alias: datePicker}

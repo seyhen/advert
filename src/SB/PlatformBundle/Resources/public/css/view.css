@@ -1,0 +1,8 @@
+img[title=advertimg]
+{
+    height: 140px;
+    width: 175px;
+    float: left;
+    margin-right: 10px;
+    border-right: auto;
+}

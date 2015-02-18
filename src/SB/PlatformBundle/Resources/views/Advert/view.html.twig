@@ -1,0 +1,48 @@
+{% extends "SBPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Lecture d'un article
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href={{ asset('bundles/sbplatform/css/view.css') }}>
+{% endblock %}
+
+{% block sbplatform_body %}
+
+    {% if advert.image is not null %}
+        <img title="advertimg" src="{{ asset(advert.image.getWebPath) }}" alt="{{ advert.image.alt }}">
+    {% endif %}
+    {% if not advert.categories.empty %}
+        <h2>Categories</h2>
+        {% for category in advert.categories %}
+            {{ category.name }}
+            {% if not loop.last %}
+                ,
+                {% endif %}
+        {% endfor %}
+
+    {% endif %}
+    <h2>{{ advert.title }}</h2>
+    <i>Publiée par {{ advert.author }} le {{ advert.date|date('d/m/Y') }}</i>
+    <i>Modifié le {{ advert.updatedAt|date('d/m/Y') }}</i>
+    <div class="well">
+        {{ advert.content }}
+    </div>
+
+    <p>
+        <a href="{{ path('sb_platform_homepage') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        <a href="{{ path('sb_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+            Modifier l'annonce
+        </a>
+        <a href="{{ path('sb_platform_delete', {'id': advert.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Supprimer l'annonce
+        </a>
+    </p>
+{% endblock %}
