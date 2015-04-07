@@ -25,13 +25,10 @@ class AdvertController extends Controller
             throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
         }
         $em = $this->getDoctrine()->getManager()->getRepository('SBPlatformBundle:Advert');
-        $listAdverts = $em->getAdvert($page, 1);
-        $nbpages = ceil(count($listAdverts) / 1);
+        $listAdverts = $em->findAll();
 
-       return $this->render('SBPlatformBundle:Advert:index.html.twig', array('listAdverts'=>$listAdverts,
-           'nbPages'=>$nbpages, 'page'=>$page));
+       return $this->render('SBPlatformBundle:Advert:index.html.twig', array('listAdverts'=>$listAdverts));
     }
-
     public function viewAction($id)
     {
         $em = $this->getDoctrine()->getManager()->getRepository('SBPlatformBundle:Advert');

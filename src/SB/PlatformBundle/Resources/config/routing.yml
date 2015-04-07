@@ -26,7 +26,3 @@ sb_platform_edit:
     requirements :
         id: \d+
 
-sb_platform_test:
-    path:    /test
-    defaults : { _controller: SBPlatformBundle:Advert:test }
-

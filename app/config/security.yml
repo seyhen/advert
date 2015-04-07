@@ -1,12 +1,54 @@
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|css)/
-            security: false
+        main:
+            pattern: ^/
+            form_login:
+                # the user is redirected here when he/she needs to login
+                login_path:                     /login
 
-        default:
-            anonymous: ~
+                # if true, forward the user to the login form instead of redirecting
+                use_forward:                    false
+
+                # submit the login form here
+                check_path:                     /login_check
+
+                # by default, the login form *must* be a POST, not a GET
+                post_only:                      true
+
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            /
+                target_path_parameter:          _target_path
+                use_referer:                    false
+
+                # login failure redirecting options (read further below)
+                failure_path:                   /
+                failure_forward:                false
+
+                # field names for the username and password fields
+                username_parameter:             _username
+                password_parameter:             _password
+
+                # csrf token options
+                csrf_parameter:                 _csrf_token
+                intention:                      authenticate
+            logout:
+                path:     /logout
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }

@@ -2,5 +2,10 @@ sb_platform:
     resource: "@SBPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+logout:
+    path:     /logout
 #    resource: "@SBPlatformBundle/Controller"
 #    type:     annotation
